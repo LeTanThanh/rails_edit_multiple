@@ -1,24 +1,31 @@
 <div class="container">
   <h2>Products List</h2>
+  <p>Select and edit multiple products</p>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @products.each do |product| %>
+  <%= form_tag edit_multiple_products_path, method: :put do |f| %>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= product.id %></td>
-          <td><%= product.name %></td>
-          <td><%= product.category.name %></td>
-          <td><%= number_to_currency product.price %></td>
+          <td>Select</td>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= check_box_tag "product_ids[]", product.id %></td>
+            <td><%= product.id %></td>
+            <td><%= product.name %></td>
+            <td><%= product.category&.name %></td>
+            <td><%= number_to_currency product.price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= submit_tag "Edit selected products", class: "btn btn-primary" %>
+  <% end %>
 </div>
