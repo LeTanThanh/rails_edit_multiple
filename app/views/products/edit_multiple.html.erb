@@ -25,6 +25,8 @@
   <h2>Edit Selected Products</h2>
 
   <%= form_tag update_multiple_products_path, method: :put, class: "form-horizontal" do |f| %>
+    <%= hidden_field_tag "product_ids", params[:product_ids] %>
+
     <div class="form-group">
       <%= label_tag "product_name", "Name", class: "control-label col-sm-2" %>
       <div class="col-sm-10">
@@ -43,7 +45,7 @@
     <div class="form-group">
       <%= label_tag "product_price", "Price", class: "control-label col-sm-2" %>
       <div class="col-sm-10">
-        <%= number_field_tag "product[category_price]", nil, class: "form-control" %>
+        <%= number_field_tag "product[price]", nil, class: "form-control" %>
       </div>
     </div>
 
